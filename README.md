@@ -139,7 +139,9 @@ Idle ram usage = 25%
 With t2.medium resources in RAM have also been increased from 1GB to 4GB
 
 RAM After
-numerous test rounds RAM was never affected by more than 5% 	
+numerous test rounds RAM was never affected by more than 5%
+
+Results can be viewed [Here](https://github.com/kevingonzalez7997/Deployment_4/tree/main/results)
 
 ### Troubleshooting 
 - Some of the issues that are likely to happen are requirements errors
