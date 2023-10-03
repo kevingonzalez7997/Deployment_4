@@ -112,10 +112,10 @@ This is important as this will allow Cloudwatch to have access to the EC2 and ac
 
 ### 9. Setting up Cloudwatch Alerts
 
-While setting up alerts, 3 resources were being selected to monitor. Since the instance we are using has more resources an alarm was set for each one of the CPUs. In addition to further viewing resource usage an alarm was also set to the RAM.
+While setting up alerts, 3 resources were being selected to monitor. Since the instance we are using has more resources an alarm was set for each one of the CPUs. In addition to further view resource usage, an alarm was also set to the RAM.
 - Create Alarm
 - Search for resources that should be monitored such as "CPU" or "mem"
-- Statistic can be set to max in order to view spiked level more detailed
+- Statistic can be set to max to view spiked level more detailed
 - Further adjustments can be made such as time intervals and threshold (15% and 5 min were used)
 
 ### Observations
