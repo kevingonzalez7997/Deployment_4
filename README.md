@@ -100,14 +100,23 @@ To install run
 
 -`sudo dpkg -i -E ./amazon-cloudwatch-agent.deb` to run the install package
 
--`cd /opt/aws/amazon-cloudwatch-agent/bin/`
+-`cd /opt/aws/amazon-cloudwatch-agent/bin/` cd into app location 
 
 -`sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard`
-This will launch the setup wizard 
+This will launch the setup wizard and allow you to configure in greater detail
 
 ### 8. AWS permissions
 - select the current working instance
-	- `Actions>Security>Modify IAM role>CloudWatchAgentServer Role` 
+	- `Actions>Security>Modify IAM role>CloudWatchAgentServer Role`
+This is important as this will allow Cloudwatch to have access to the EC2 and access log files
+
+### 9. Setting up Cloudwatch Alerts
+
+While setting up alerts, 3 resources were being selected to monitor. Since the instance we are using has more resources an alarm was set for each one of the CPUs. In addition to further viewing resource usage an alarm was also set to the RAM.
+- Create Alarm
+- Search for resources that should be monitored such as "CPU" or "mem"
+- Statistic can be set to max in order to view spiked level more detailed
+- Further adjustments can be made such as time intervals and threshold (15% and 5 min were used)
 
 ### Observations
 
