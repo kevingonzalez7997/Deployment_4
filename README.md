@@ -70,7 +70,7 @@ Git is a commonly used command-line tool that helps developers track changes in 
 - Copy and import the Repository URL where the application source code is located
 - User Name will be Github user and the password is the generated key in GitHub
 
-### 6. configure nginx
+### 6. Configure nginx
 After ngnix has been installed it must also be configured.
 Run the following to edit 
 `sudo nano /etc/nginx/sites-enabled/default`
@@ -111,26 +111,27 @@ This will launch the setup wizard
 
 ### Observations
 
-**CPU.1 Before**  
+CPU.1 Before  
 Once the monitor system was attached and deployed a few tests were run to examine resource allocation. First, we need to know what the application's idle CPU usage is. 
 
 After 15 minutes idle did not surpass 5%
 
-**CPU.1 After**  
+CPU.1 After  
 Since a multibranch was used, two branches were created with the same code to further test the application resources. The applications were run simultaneously and observed. After a few minutes, the alarms were triggered and emails were delivered.
 
 After two test runs a max CPU usage spike of 52% was recorded.
 
-**CPU.2 After**  
+CPU.2 After  
 Since the EC2 t2.Medium has 2 CPUs, both were monitored. After the tests were run we can conclude that the workload was divided equally. Both alerts show highly similar graph patterns. 
 
-**RAM**  
+RAM Before 
 An alarm was also installed to monitor the RAM usage.
-
-Idle ram usage = 25% 
-
+Idle ram usage = 25%
 With t2.medium resources in RAM have also been increased from 1GB to 4GB
-After numerous test rounds ram was never affected by more than 5%
+
+RAM After
+numerous test rounds RAM was never affected by more than 5% 	
+
 ### Troubleshooting 
 - Some of the issues that are likely to happen are requirements errors
 	- Before trying to use a tool, it must be installed correctly beforehand
@@ -138,6 +139,8 @@ After numerous test rounds ram was never affected by more than 5%
 - When setting up CloudWatch, if the EC2 created doesn't appear refer to step 8
 - when installing Jenkins or any program, the order is important (Especially repo before installing apt)
 - When setting up CloudWatch if CPU levels don't show accurately change the metric filter from average to maximum 
-  
+
+### Optimizations
+
 ### Conclusion 
 In conclusion, the CPU and RAM monitoring conducted provided valuable insights into the application's performance and resource requirements. Before testing, the application displayed stable and low CPU and RAM usage during idle periods. However, during stress testing with two branches running simultaneously, CPU usage experienced a significant spike, reaching a maximum of 53%. Thanks to the more resourceful EC2 instance with a dual CPU setup, it effectively divided the workload equally, maintaining similar graph patterns for both CPUs. Given that the t2.micro instance has half the resources, it can be concluded that deploying a multibranch configuration would likely overwhelm the EC2 and would not be recommended for this particular project.
