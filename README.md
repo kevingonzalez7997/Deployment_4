@@ -17,7 +17,7 @@ These will be installed after the EC2 has been configured
 - Install "python3.10-venv"
 - Install "python-pip"
 - Install "python3-pip"
-- Install [ngnix] (https://www.nginx.com/blog/setting-up-nginx/)
+- Install [ngnix](https://www.nginx.com/blog/setting-up-nginx/)
 - Install "git-all"
 
 
@@ -51,7 +51,7 @@ This is where AWS allows you to create and configure the instance's security gro
 
 ### 3. Git Clone
 
-Git is a commonly used command-line tool that helps developers track changes in their codebase. Git allows you to create and manage repositories that store the history of your project, including all the changes made to it over time.  Instructions on cloning using git can be found [Here] (https://github.com/kevingonzalez7997/Git_Cloning.git)
+Git is a commonly used command-line tool that helps developers track changes in their codebase. Git allows you to create and manage repositories that store the history of your project, including all the changes made to it over time.  Instructions on cloning using git can be found [Here](https://github.com/kevingonzalez7997/Git_Cloning.git)
 
 ### 4. Install Jenkins on EC2
 
