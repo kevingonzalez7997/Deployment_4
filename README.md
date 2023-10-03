@@ -93,7 +93,7 @@ server {
 </pre>
 
 ### 7. Installing CloudWatch
-Minimizing downtime is one of the main concepts for a successful application. In order to optimize the application from the previous build a monitor system has been implemented. Since we are using AWS, Cloudwatch was utilized to maintain the native Integration. Another pro is that, it is more cost-efficient as you only pay for the services that you need.
+Minimizing downtime is one of the main concepts for a successful application. To optimize the application from the previous build a monitor system has been implemented. Since we are using AWS, Cloudwatch was utilized to maintain the native Integration. Another pro is that, it is more cost-efficient as you only pay for the services that you need.
 
 To install run
 -`Wget https://amazoncloudwatch-agent.s3.amazonaws.com/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb` to download the install package file
@@ -141,6 +141,7 @@ numerous test rounds RAM was never affected by more than 5%
 - When setting up CloudWatch if CPU levels don't show accurately change the metric filter from average to maximum 
 
 ### Optimizations
+To further optimize the pipeline and minimize downtime, we could consider implementing more alarms. It's important to set up an alert for critical CPU levels, such as 85% or higher. Preventing issues before they occur is always preferable, as high CPU levels may lead to the application potentially crashing. Additionally, we can explore horizontal scaling to further distribute traffic. If traffic continues to increase, integrating an instance with higher resources into the application is also an option that can be discussed. 
 
 ### Conclusion 
 In conclusion, the CPU and RAM monitoring conducted provided valuable insights into the application's performance and resource requirements. Before testing, the application displayed stable and low CPU and RAM usage during idle periods. However, during stress testing with two branches running simultaneously, CPU usage experienced a significant spike, reaching a maximum of 53%. Thanks to the more resourceful EC2 instance with a dual CPU setup, it effectively divided the workload equally, maintaining similar graph patterns for both CPUs. Given that the t2.micro instance has half the resources, it can be concluded that deploying a multibranch configuration would likely overwhelm the EC2 and would not be recommended for this particular project.
