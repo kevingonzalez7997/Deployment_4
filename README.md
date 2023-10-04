@@ -71,7 +71,7 @@ Git is a commonly used command-line tool that helps developers track changes in 
 - User Name will be Github user and the password is the generated key in GitHub
 
 ### 6. Configure nginx
-After ngnix has been installed it must also be configured.
+In the last version, ElasticBean stalk was used to deploy our application. This was replaced by Nginx, a popular open-source web server and reverse proxy server software. It is commonly used to serve web content, handle incoming web requests, and act as a load balancer for distributing traffic across multiple servers or applications. After ngnix has been installed it must also be configured. Since port 80 is already in use for "HTTP", 20 for SSH, and 8080 for Jenkins we went with 5000. That is why in the first edit we swapped out 80 to 5000. For the location, we made it so the link can be reached through port 8000. 
 Run the following to edit 
 `sudo nano /etc/nginx/sites-enabled/default`
 
