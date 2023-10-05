@@ -71,7 +71,8 @@ Git is a commonly used command-line tool that helps developers track changes in 
 - User Name will be Github user and the password is the generated key in GitHub
 
 ### 6. Configure nginx
-In the last version, ElasticBean stalk was used to deploy our application. This was replaced by Nginx, a popular open-source web server and reverse proxy server software. It is commonly used to serve web content, handle incoming web requests, and act as a load balancer for distributing traffic across multiple servers or applications. After ngnix has been installed it must also be configured. Since port 80 is already in use for "HTTP", 20 for SSH, and 8080 for Jenkins we went with 5000. That is why in the first edit we swapped out 80 to 5000. For the location, we made it so the link can be reached through port 8000. 
+In the last version, ElasticBean stalk was used to deploy our application. This was replaced by Nginx, a popular open-source web server and reverse proxy server software. It is commonly used to serve web content, handle incoming web requests, and act as a load balancer for distributing traffic across multiple servers or applications. After ngnix has been installed it must also be configured. Since port 80 is already in use for "HTTP", 20 for SSH, and 8080 for Jenkins. 
+The application can be accessed through both 5000 and 8000. On port 5000 nginx is running and redirecting to port 8000 where gunicorn is running. This is implemented to separate the web tire and the application tire. That is why in the first edit we swapped out 80 to 5000. For the location, we made it so the link can be reached through port 8000. The data tier is the .json file where the application data is stored.
 Run the following to edit 
 `sudo nano /etc/nginx/sites-enabled/default`
 
@@ -112,7 +113,7 @@ This is important as this will allow Cloudwatch to have access to the EC2 and ac
 
 ### 9. Setting up Cloudwatch Alerts
 
-While setting up alerts, 3 resources were being selected to monitor. Since the instance we are using has more resources an alarm was set for each one of the CPUs. In addition to further view resource usage, an alarm was also set to the RAM.
+While setting up alerts, 3 resources were being selected to monitor. Since the instance we are using has more resources an alarm was set for each one of the CPUs. In addition to further viewing resource usage, an alarm was also set to the RAM.
 - Create Alarm
 - Search for resources that should be monitored such as "CPU" or "mem"
 - Statistic can be set to max to view spiked level more detailed
@@ -152,7 +153,7 @@ Results can be viewed [Here](https://github.com/kevingonzalez7997/Deployment_4/t
 - When setting up CloudWatch if CPU levels don't show accurately change the metric filter from average to maximum 
 
 ### Optimizations
-To further optimize the pipeline and minimize downtime, we could consider implementing more alarms. It's important to set up an alert for critical CPU levels, such as 85% or higher. Preventing issues before they occur is always preferable, as high CPU levels may lead to the application potentially crashing. Additionally, we can explore horizontal scaling to further distribute traffic. If traffic continues to increase, integrating an instance with higher resources into the application is also an option that can be discussed. 
+To further optimize the pipeline and minimize downtime, we could consider implementing more alarms. It's important to set alerts for critical CPU levels, such as 85% or higher. Preventing issues before they occur is always preferable, as high CPU levels may lead to the application potentially crashing. Additionally, we can explore horizontal scaling to further distribute traffic. If traffic continues to increase, integrating an instance with higher resources into the application is also an option that can be discussed. 
 
 ### Conclusion 
 In conclusion, the CPU and RAM monitoring conducted provided valuable insights into the application's performance and resource requirements. Before testing, the application displayed stable and low CPU and RAM usage during idle periods. However, during stress testing with two branches running simultaneously, CPU usage experienced a significant spike, reaching a maximum of 53%. Thanks to the more resourceful EC2 instance with a dual CPU setup, it effectively divided the workload equally, maintaining similar graph patterns for both CPUs. Given that the t2.micro instance has half the resources, it can be concluded that deploying a multibranch configuration would likely overwhelm the EC2 and would not be recommended for this particular project.
