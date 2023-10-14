@@ -106,6 +106,9 @@ To install run
 -`sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard`
 This will launch the setup wizard and allow you to configure in greater detail
 
+-`/opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c file:/opt/aws/amazon-cloudwatch-agent/bin/config.json`
+Will launch the agent, status can be checked with:
+-`sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -m ec2 -a status`
 ### 8. AWS permissions
 - select the current working instance
 	- `Actions>Security>Modify IAM role>CloudWatchAgentServer Role`
