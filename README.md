@@ -5,9 +5,7 @@ Kevin Gonzalez
 
 ## Purpose:
 
-To monitor web server and its resource usage
-
-In the previous build, automation was incorporated into the pipeline using Webhook and Elastic Beanstalk CLI. Any update done to Git Hub would get automatically redeployed. This was an improvement but didn't account for monitoring. Through the use of CloudWatch, abnormal levels of CPU usage are reported instantly. In addition, the VCP was configured manually instead of the default VPC. This helps increase security by implementing private subnets.
+This project prioritizes real-time monitoring through Amazon CloudWatch for swift issue resolution. We've also fortified security by manually configuring the Virtual Private Cloud (VPC) with private subnets, ensuring overall safety
 
 ## Prerequisites:
 These will be installed after the EC2 has been configured
