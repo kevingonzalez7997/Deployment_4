@@ -5,7 +5,7 @@ Kevin Gonzalez
 
 ## Purpose:
 
-This project prioritizes real-time monitoring through Amazon CloudWatch for swift issue resolution. We've also fortified security by manually configuring the Virtual Private Cloud (VPC) with private subnets, ensuring overall safety
+This deployment project is focused on the efficient launch of a URL shortening application using Nginx and Gunicorn, while also implementing robust monitoring through Amazon CloudWatch.
 
 ## Prerequisites:
 These will be installed after the EC2 has been configured
@@ -17,9 +17,6 @@ These will be installed after the EC2 has been configured
 - Install "python3-pip"
 - Install [ngnix](https://www.nginx.com/blog/setting-up-nginx/)
 - Install "git-all"
-
-
-
 ## Steps
 
 ### 1. Configure infrastructure
@@ -41,10 +38,9 @@ A few applications will be installed onto the EC2. Since the infrastructure was 
 - In the network setting select the VPC that was created earlier
 - Select `public1` subnet that was created earlier
 - Select “Auto-assign public IP” This is important as the public IP is what makes the EC2 visible 
-This is where AWS allows you to create and configure the instance's security group. There are four different inbound rules that will be configured. By default ssh, port 22 is already added. Continue with port 80,8000,8080
+This is where AWS allows you to create and configure the instance's security group. There are four different inbound rules that will be configured. By default ssh, port 22 is already added. Continue with ports 80,8080,5000
 - For port 80 in the type section select HTTP, it should by default select the port
-- for port 8000 select custom TCP
-- for port 8080 select custom TCP as well
+- For ports 8080, and 5000 select custom TCP (8080 for Jenkins, 5000 for application access, 80 standard HTTP)
 - Launch and connect to instance
 
 ### 3. Git Clone
@@ -69,8 +65,8 @@ Git is a commonly used command-line tool that helps developers track changes in 
 - User Name will be Github user and the password is the generated key in GitHub
 
 ### 6. Configure nginx
-In the last version, ElasticBean stalk was used to deploy our application. This was replaced by Nginx, a popular open-source web server and reverse proxy server software. It is commonly used to serve web content, handle incoming web requests, and act as a load balancer for distributing traffic across multiple servers or applications. After ngnix has been installed it must also be configured. Since port 80 is already in use for "HTTP", 20 for SSH, and 8080 for Jenkins. 
-The application can be accessed through both 5000 and 8000. On port 5000 nginx is running and redirecting to port 8000 where gunicorn is running. This is implemented to separate the web tire and the application tire. That is why in the first edit we swapped out 80 to 5000. For the location, we made it so the link can be reached through port 8000. The data tier is the .json file where the application data is stored.
+In the last version, ElasticBean stalk was used to deploy the application. This was replaced by Gunicorn, a popular Python web server designed to serve Python web applications, like Flask. It handles incoming HTTP requests and serves responses, making it a reliable choice for deploying Python web apps in production. To enhance security, Nginx, a versatile web server and reverse proxy, is a critical component in this deployment. Nginx listens on port 8000 where Gunicorn is hosting the application and reroutes user requests to the application on port 5000. By doing so, Nginx is a secure intermediary that shields the application, ensuring safe and efficient traffic management.
+
 Run the following to edit 
 `sudo nano /etc/nginx/sites-enabled/default`
 
@@ -92,7 +88,7 @@ server {
 </pre>
 
 ### 7. Installing CloudWatch
-Minimizing downtime is one of the main concepts for a successful application. To optimize the application from the previous build a monitor system has been implemented. Since we are using AWS, Cloudwatch was utilized to maintain the native Integration. Another pro is that, it is more cost-efficient as you only pay for the services that you need.
+To enhance the monitoring capabilities and maintain native integration within the AWS ecosystem, we've leveraged AWS CloudWatch. This service provides comprehensive insights into application performance, allowing us to proactively address issues and minimize disruptions.
 
 To install run
 -`Wget https://amazoncloudwatch-agent.s3.amazonaws.com/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb` to download the install package file
