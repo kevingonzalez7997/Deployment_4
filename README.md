@@ -6,7 +6,7 @@ Kevin Gonzalez
 ## Purpose:
 
 This deployment project is focused on the efficient launch of a URL shortening application using Nginx and Gunicorn, while also implementing robust monitoring through Amazon CloudWatch.
-
+![diagramd4](Deployment4 (1).png)
 ## Prerequisites:
 These will be installed after the EC2 has been configured
 - Best practice have the system up to date before installing anything
