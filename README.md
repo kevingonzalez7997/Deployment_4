@@ -65,7 +65,7 @@ Git is a commonly used command-line tool that helps developers track changes in 
 - User Name will be Github user and the password is the generated key in GitHub
 
 ### 6. Configure nginx
-In the last version, ElasticBean stalk was used to deploy the application. This was replaced by Gunicorn, a popular Python web server designed to serve Python web applications, like Flask. It handles incoming HTTP requests and serves responses, making it a reliable choice for deploying Python web apps in production. To enhance security, Nginx, a versatile web server and reverse proxy, is a critical component in this deployment. Nginx listens on port 8000 where Gunicorn is hosting the application and reroutes user requests to the application on port 5000. By doing so, Nginx is a secure intermediary that shields the application, ensuring safe and efficient traffic management.
+In the last version, ElasticBean stalk was used to deploy the application. This was replaced by Gunicorn, a popular Python web server designed to serve Python web applications, like Flask. It handles incoming HTTP requests and serves responses, making it a reliable choice for deploying Python web apps in production. To enhance security, Nginx, a versatile web server and reverse proxy, is a critical component in this deployment. Nginx listens on port 5000 and reouting traffic to Gunicorn which is hosting the application on port 8000. By doing so, Nginx is a secure intermediary that shields the application, ensuring safe and efficient traffic management.
 
 Run the following to edit 
 `sudo nano /etc/nginx/sites-enabled/default`
